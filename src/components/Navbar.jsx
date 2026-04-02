@@ -36,10 +36,10 @@ export default function Navbar() {
           scrolled ? 'glass-dark py-4 shadow-2xl' : 'py-6 bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 relative flex items-center justify-between md:justify-center">
+        <div className="max-w-7xl mx-auto px-6 relative flex items-center justify-center">
           
           {/* Mobile Toggle & Desktop Left Spacer */}
-          <div className="md:absolute md:left-6 flex-1 flex md:hidden">
+          <div className="absolute left-6 flex md:hidden">
             <button
               className="text-white text-2xl"
               onClick={() => setMobileOpen(!mobileOpen)}

@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-white/5 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24 md:pt-0">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
