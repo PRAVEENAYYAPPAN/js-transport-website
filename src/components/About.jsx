@@ -99,25 +99,25 @@ export default function About() {
           {/* Bottom: Timeline (Centered Variant) */}
           <div className="relative w-full max-w-lg mx-auto">
             {/* Vertical line centered */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/40 via-gold/10 to-transparent" />
+            <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/40 via-gold/10 to-transparent" />
 
             <div className="space-y-12">
               {milestones.map((m, i) => (
                 <FadeIn key={i} direction="up" delay={i * 0.1}>
-                  <div className={`flex items-center w-full gap-8 relative ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                  <div className={`flex items-center w-full gap-4 md:gap-8 relative flex-row ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
                     
                     {/* Empty block for spacing alignment */}
                     <div className="flex-1 hidden md:block"></div>
 
                     {/* Dot Center */}
-                    <div className="relative z-10 flex-shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-                      <div className="w-10 h-10 rounded-full glass border border-white/20 flex items-center justify-center group-hover:border-white/50 group-hover:box-shadow-white-glow transition-all duration-300">
-                        <div className="w-2.5 h-2.5 rounded-full bg-gold" />
+                    <div className="relative z-10 flex-shrink-0 absolute left-6 -translate-x-1/2 md:static md:translate-x-0">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full glass border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-all duration-300">
+                        <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-gold" />
                       </div>
                     </div>
 
                     {/* Content Card */}
-                    <div className={`glass rounded-2xl p-6 flex-1 text-left border border-white/10 transition-all duration-300 hover:bg-white/5 shadow-lg relative ${i % 2 === 0 ? 'ml-12 md:ml-0' : 'mr-12 md:mr-0 text-right md:text-right'}`}>
+                    <div className={`glass rounded-2xl p-6 flex-1 text-left border border-white/10 transition-all duration-300 hover:bg-white/5 shadow-lg relative ml-12 md:ml-0 ${i % 2 === 0 ? '' : 'md:text-right'}`}>
                       <div className="text-zinc-400 text-xs font-bold uppercase tracking-widest mb-1">{m.year}</div>
                       <div className="text-white font-bold text-lg mb-2">{m.title}</div>
                       <div className="text-gray-400 text-sm leading-relaxed">{m.desc}</div>

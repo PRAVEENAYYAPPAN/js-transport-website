@@ -26,12 +26,37 @@ export default function Contact() {
   });
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: '', phone: '', message: '' });
+    setSubmitting(true);
+    
+    try {
+      await fetch("https://formsubmit.co/ajax/praveenayyappan28@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: form.name,
+            phone: form.phone,
+            message: form.message,
+            _cc: 'madhanjasri@gmail.com',
+            _subject: 'New Transport Enquiry from ' + form.name
+        })
+      });
+      
+      setSubmitted(true);
+      setForm({ name: '', phone: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send enquiry automatically. Please contact us via WhatsApp.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -211,12 +236,15 @@ export default function Contact() {
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(200,168,92,0.2)' }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-black font-bold text-lg tracking-wide transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden group"
+                  disabled={submitting}
+                  whileHover={submitting ? {} : { scale: 1.02, boxShadow: '0 0 30px rgba(200,168,92,0.2)' }}
+                  whileTap={submitting ? {} : { scale: 0.98 }}
+                  className={`w-full py-4 rounded-xl font-bold text-lg tracking-wide transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden group ${submitting ? 'bg-gold/50 text-black/50 cursor-not-allowed' : 'bg-gradient-to-r from-gold to-gold-dark text-black'}`}
                 >
-                  <span className="relative z-10 flex items-center gap-2">Submit Enquiry</span>
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+                  <span className="relative z-10 flex items-center gap-2">
+                    {submitting ? 'Sending...' : 'Submit Enquiry'}
+                  </span>
+                  {!submitting && <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />}
                 </motion.button>
               </form>
             )}
